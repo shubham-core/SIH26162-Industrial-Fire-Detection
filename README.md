@@ -16,6 +16,14 @@
   <img src="https://img.shields.io/badge/Hackathon-SIH%202026-gold" alt="SIH 2026" />
 </p>
 
+<p align="center">
+  <a href="assets/orbit-flare-demo.gif">
+    <img src="assets/orbit-flare-demo.gif" alt="SIH26162 (Orbit Flare) Edge AI Industrial Fire & Smoke Surveillance System — Real-Time Demo" width="850px" />
+  </a>
+  <br>
+  <em>Live Demo: Edge AI spatial-temporal persistence gating, instant snapshot forensics & emergency SOC alerting</em>
+</p>
+
 ---
 
 ## 📑 Table of Contents
