@@ -57,10 +57,36 @@
 Operating at **17–53 ms per frame on standard commercial CPUs**, the platform processes live camera streams, identifies flame and smoke bounding boxes using an optimized YOLOv8n network, scores threat severity via an area-weighted persistence formula, saves forensic evidence snapshots, compiles instant 1-page PDF incident dossiers, and broadcasts alerts across a tactical Security Operations Center (SOC) dashboard, Telegram, and carrier SMS.
 
 ```
-┌─────────────────┐      ┌─────────────────────────┐      ┌───────────────────────────┐
-│   CCTV Stream   │ ──►  │ YOLOv8n + Persistence   │ ──►  │ Real-Time SOC Dashboard   │
-│ (RTSP / Webcam) │      │ Scoring Engine (17-53ms)│      │ Snapshots • PDF • Telegram│
-└─────────────────┘      └─────────────────────────┘      └───────────────────────────┘
+┌─────────────────────────────────┐
+│ Video Ingestion Stream          │
+│ (RTSP CCTV Stream / Test Video) │
+└────────────────┬────────────────┘
+                 │ (OpenCV Frame Buffer Capture)
+                 ▼
+┌─────────────────────────────────┐
+│ Edge Neural Inference Engine    │
+│ (YOLOv8n CPU • 17–53ms Latency) │
+└────────────────┬────────────────┘
+                 │ (Bounding Boxes & Class Probabilities)
+                 ▼
+┌─────────────────────────────────┐
+│ Spatial-Temporal Gating Engine  │
+│ (5-Frame Gate + 65/35 Area/Conf)│
+└────────────────┬────────────────┘
+                 │ (Filters Optical Glare & Transient Sparks)
+                 ▼
+┌─────────────────────────────────┐
+│ Fail-Soft Concurrency Dispatcher│
+│ (Thread-Safe Mutex Guarded)     │
+└────────────────┬────────────────┘
+                 │
+       ┌─────────┴─────────┐
+       ▼                   ▼
+┌──────────────┐   ┌───────────────────────────────┐
+│ Multi-Camera │   │ Forensic Evidence Pipeline    │
+│ SOC Web HUD  │   │ (JPEG Snapshot + ReportLab PDF│
+│ (1Hz Polling)│   │  + Telegram Bot & Carrier SMS)│
+└──────────────┘   └───────────────────────────────┘
 ```
 
 ---
